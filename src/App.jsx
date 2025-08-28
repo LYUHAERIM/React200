@@ -1,38 +1,58 @@
-import axios from 'axios';
 import React, { Component } from 'react';
+const {Provider, Consumer} = React.createContext();
 
 class App extends Component {
-  async func01() {
-    console.log('func01 call');
-    // fetch는 비동기 함수
-    // await는 fetch 함수를 동기화시킨다
-    const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
-    let data = await res.json;
-    console.log(data);    
-    console.log(data.title);
+  constructor() {
+    super();
+    this.state = {
+      num:100,
+    };
   }
 
-  func02() {
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-      .then(res=>{return res.json(); })
-      .then((data)=>{ console.log(data); });
-  }
-
-  func03() {
-    axios.get('https://jsonplaceholder.typicode.com/todos')
-    .then( res => {
-      //let {userId, id, title, completed} = res.data;
-      //console.log(userId, id, title, completed);
-      console.log(res.data[0].userId);      
-    });
+  f01 = () => {
+    this.setState({num:this.state.num+1})
   }
 
   render() {
+    let tiger = {...this.state, fff:this.f01};
+    console.log('내용:', tiger);
+    
     return (
       <div>
-        <button onClick={()=> {this.func01()}}>버튼1</button><br/>
-        <button onClick={()=> {this.func02()}}>버튼2</button><br/>
-        <button onClick={()=> {this.func03()}}>버튼3</button><br/>
+        <Provider value={tiger}>
+          <p>app</p>
+          <p>{this.state.num}</p>
+          <button onClick={()=> {this.f01()}}>버튼1</button><br/>
+          <Bpp/>
+        </Provider>
+      </div>
+    );
+  }
+}
+
+class Bpp extends Component {
+  render() {
+    return (
+      <div>
+        <p>bpp</p> 
+        <Cpp/>
+      </div>
+    );
+  }
+}
+
+class Cpp extends Component {
+  render() {
+    return (
+      <div>
+        <Consumer>
+          {(cv)=>{
+            return <button onClick={
+              ()=>{cv.fff()}
+            }>Cpp의 버튼{cv.num}</button>
+          }}
+        </Consumer>
+        <p>cpp</p> 
       </div>
     );
   }
