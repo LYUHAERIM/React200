@@ -1,9 +1,8 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
+import App, {reducer} from './App.jsx'
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import reducer from './modules/bpp.jsx';
 
 const store = configureStore({reducer:reducer});
 
