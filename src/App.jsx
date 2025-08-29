@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import Bpp from './components/Bpp';
 import BppContainer from './containers/BppContainer';
+import CppContainer from './containers/CppContainer';
 
 class App extends Component {
   render() {
@@ -8,7 +9,7 @@ class App extends Component {
       <div>
         <p>App</p>
         <BppContainer/>
-        {/*<ConnectBpp/>*/}
+        <CppContainer/>
       </div>
     );
   }
