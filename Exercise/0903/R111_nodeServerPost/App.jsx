@@ -56,81 +56,9 @@ class App extends Component {
         console.log(res.data);
       })
   }
-
-  f08() {
-    console.log('Call8');
-    axios.post('/api/tiger04', {
-      name: '홍길동',
-      age: 99
-    })
-      .then((res) => {
-        console.log(res.data);
-      })
-  }
-
-  f09() {
-    console.log('Call9');
-    axios.post('/api/tiger05/apple')
-      .then((res) => {
-        console.log(res.data);
-      })
-  }
-
-  constructor() {
-    super();
-    this.state = {
-      result: [],
-    };
-  }
-
-  f10() {
-    console.log('Call10');
-    axios.get('/api/tiger06')
-      .then((res) => {
-        console.log(res.data.length);
-        let tmp = [];
-        for (let i = 0; i < res.data.length; i++) {
-          let { id, name, age } = res.data[i];
-          tmp.push(
-            <tr key={i + 1}>
-              <td>{id}</td>
-              <td>{name}</td>
-              <td>{age}</td>
-            </tr>
-          );
-        }
-        this.setState({ result: tmp })
-      });
-  }
-
-  f11() {
-    console.log('Call11');
-    axios.get('/api/tiger07')
-      .then((res) => {
-        console.log(res.data.length);
-        let tmp = [];
-        for (let i = 0; i < res.data.length; i++) {
-          let { id, name, age } = res.data[i];
-          tmp.push(
-            <tr key={i + 1}>
-              <td>{id}</td>
-              <td>{name}</td>
-              <td>{age}</td>
-            </tr>
-          );
-        }
-        this.setState({ result: tmp })
-      });
-  }
-
   render() {
     return (
       <div>
-        <table border={1}>
-          <tbody>
-            {this.state.result}
-          </tbody>
-        </table>
         <p>App</p>
         <button onClick={() => { this.f01() }}>버튼1</button><br />
         <button onClick={() => { this.f02() }}>버튼2</button><br />
@@ -141,10 +69,6 @@ class App extends Component {
         <button onClick={() => { this.f06() }}>버튼6</button><br />
         <button onClick={() => { this.f07(1) }}>버튼7-1</button><br />
         <button onClick={() => { this.f07(2) }}>버튼7-2</button><br />
-        <button onClick={() => { this.f08() }}>버튼8</button><br />
-        <button onClick={() => { this.f09() }}>버튼9</button><br />
-        <button onClick={() => { this.f10() }}>버튼10</button><br />
-        <button onClick={() => { this.f11() }}>버튼11</button><br />
       </div>
     );
   }

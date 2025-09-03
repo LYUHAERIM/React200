@@ -103,26 +103,6 @@ class App extends Component {
       });
   }
 
-  f11() {
-    console.log('Call11');
-    axios.get('/api/tiger07')
-      .then((res) => {
-        console.log(res.data.length);
-        let tmp = [];
-        for (let i = 0; i < res.data.length; i++) {
-          let { id, name, age } = res.data[i];
-          tmp.push(
-            <tr key={i + 1}>
-              <td>{id}</td>
-              <td>{name}</td>
-              <td>{age}</td>
-            </tr>
-          );
-        }
-        this.setState({ result: tmp })
-      });
-  }
-
   render() {
     return (
       <div>
@@ -144,7 +124,6 @@ class App extends Component {
         <button onClick={() => { this.f08() }}>버튼8</button><br />
         <button onClick={() => { this.f09() }}>버튼9</button><br />
         <button onClick={() => { this.f10() }}>버튼10</button><br />
-        <button onClick={() => { this.f11() }}>버튼11</button><br />
       </div>
     );
   }
